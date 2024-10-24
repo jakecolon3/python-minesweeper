@@ -1,3 +1,5 @@
+# pylint: disable=invalid-name
+
 import random
 import copy
 
@@ -14,15 +16,14 @@ expert = [16, 30, 99]
 def minesweeperSettings():
 
     global difficulty
-    
     print("\n| python minesweeper by jakecolon3 :D |\n\n")
 
     print("select seed (0 to randomize):\n")
     try:
-      seed = int(input("seed: "))
+        seed = int(input("seed: "))
     except:
-      print("\nseed must be an integer!\n")
-      minesweeperSettings()
+        print("\nseed must be an integer!\n")
+        minesweeperSettings()
 
 
 
@@ -32,10 +33,8 @@ def minesweeperSettings():
     else:
         random.seed(random.randrange(0, 10))
 
-    
     print("easy (9x9, 10 mines)\nintermediate (16x16, 40 mines)\nexpert (30x16, 99 mines)\ncustom")
     difficultyInput = input("select difficulty: ")
-    
     if difficultyInput.casefold() == "easy":
         difficulty = easy
     elif difficultyInput.casefold() == "intermediate":
@@ -51,8 +50,6 @@ def minesweeperSettings():
         minesweeperSettings()
 
     minesweeper()
-
-  
 def minesweeper():
 
     # creates a tuple with boardDimensions - mineAmount zeroes and mineAmount ones and shuffles it
@@ -114,7 +111,7 @@ def minesweeper():
 
         minesweeperPositions(boardRows, boardColumns, mineAmount)
 
-        for row in range(boardRows): 
+        for row in range(boardRows):
             for column in range(boardColumns):
                 boardMatrixConstructor.append(board[boardIndex])
                 boardIndex += 1
@@ -127,7 +124,8 @@ def minesweeper():
     minesweeperBoard(*difficulty)
 
 
-    # creates a matrix filled with zeroes, iterates through boardMatrix and increments numberBoard cells adjacent to a mine relative to boardMatrix by 1 whenever it encounters one
+    # creates a matrix filled with zeroes, iterates through boardMatrix and increments numberBoard
+    # cells adjacent to a mine relative to boardMatrix by 1 whenever it encounters one
     def minesweeperNumberBoard(boardRows, boardColumns, mineAmount):
 
         global numberBoard
@@ -262,7 +260,8 @@ def minesweeperAction(row, column, action = sweep):
             minesweeperInput()
         elif actionBoard[row][column] == 1:
             print("\nyou hit a mine!\n\ntry again?")
-            retry = input("type retry to retry with the same settings, n to go back to difficulty select: ")
+            retry = input("type retry to retry with the same settings, "
+                          "n to go back to difficulty select: ")
             if retry.casefold() == "retry":
                 minesweeper()
             else:
@@ -272,7 +271,8 @@ def minesweeperAction(row, column, action = sweep):
 
         return(actionBoard)
 
-    # replaces a value in the actionBoard matrix with "f" except if it is already "f" in which case it resets it
+    # replaces a value in the actionBoard matrix with "f"
+    # except if it is already "f" in which case it resets it
     def minesweeperActionFlag(row, column):
 
         if row > boardSize[0] or column >= boardSize[1]:
@@ -308,7 +308,8 @@ def minesweeperAction(row, column, action = sweep):
         print("invalid action! please select a valid action.\n")
         minesweeperInput()
 
-# prints a formatted board by concatenating strings according to actionBoard and numberBoard contents
+# prints a formatted board by concatenating strings
+# according to actionBoard and numberBoard contents
 def minesweeperBoardDisplayed():
 
     displayedBoard = copy.deepcopy(actionBoard)
