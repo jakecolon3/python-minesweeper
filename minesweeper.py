@@ -13,6 +13,7 @@ easy = [9, 9, 10]
 intermediate = [16, 16, 40]
 expert = [16, 30, 99]
 
+# sets seed and difficulty for the game
 def minesweeperSettings():
 
     global difficulty
@@ -25,9 +26,6 @@ def minesweeperSettings():
         print("\nseed must be an integer!\n")
         minesweeperSettings()
 
-
-
-    # seed:
     if seed != 0:
         random.seed(seed)
     else:
@@ -50,6 +48,8 @@ def minesweeperSettings():
         minesweeperSettings()
 
     minesweeper()
+
+# contains all the functions responsible for generating the board
 def minesweeper():
 
     # creates a tuple with boardDimensions - mineAmount zeroes and mineAmount ones and shuffles it
@@ -346,6 +346,7 @@ def minesweeperBoardDisplayed():
 
 minesweeperSettings()
 
+# asks for a valid input and turns it into a useable format
 def minesweeperInput():
     minesweeperBoardDisplayed()
     action = input("type row, column, action (defaults to sweep): ").split(", ")
